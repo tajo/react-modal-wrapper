@@ -4,11 +4,14 @@ module.exports = {
   entry: path.resolve(process.cwd(), 'lib/index.js'),
   output: {
     filename: 'index.js',
-    path: 'build/'
+    path: 'build/',
+    libraryTarget: 'umd',
+    library: 'react-modal-wrapper'
   },
   externals: {
-    // 'react': 'React',
-    // 'react-dom': 'ReactDOM'
+    'react': 'react',
+    'react-dom': 'react-dom',
+    'react-portal': 'react-portal'
   },
   module: {
     loaders: [

@@ -12,7 +12,7 @@ npm install react-modal-wrapper --save
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FlexModalWrapper from 'react-flex-modal';
+import FlexModalWrapper from 'react-modal-wrapper';
 
 const Modal = React.createClass({
   render() {
