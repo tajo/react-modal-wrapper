@@ -1,0 +1,40 @@
+body {
+    color: #333;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: 200;
+}
+
+.example {
+    padding: 0 25px;
+}
+
+.modal {
+    background-color: #fff;
+    border: 1px solid #000;
+    padding: 25px;
+}
+
+.fullscreen {
+    position: absolute;
+    top: 1px;
+    bottom: 1px;
+    right: 1px;
+    left: 1px;
+    background-color: #ddd;
+}
+
+.scrolling {
+    width: 400px;
+    height: 600px;
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
+.animate-appear {
+    opacity: 0.01;
+}
+
+.animate-appear.animate-appear-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+}
