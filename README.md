@@ -3,7 +3,7 @@
 A React Modal Wrapper that uses FlexBox to keep it's position, BYOM (bring-your-own-modal). Based off the [Portal component](https://github.com/tajo/react-portal) by [Tajo](https://github.com/tajo).
 **Note:** This uses flexbox so browser support is iffy. Will post a compatibility table at some point.
 
-## Installation
+## Installation (not yet published)
 ```
 npm install react-modal-wrapper --save
 ```
