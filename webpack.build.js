@@ -7,8 +7,8 @@ module.exports = {
     path: 'build/'
   },
   externals: {
-    'react': 'React',
-    'react-dom': 'ReactDOM'
+    // 'react': 'React',
+    // 'react-dom': 'ReactDOM'
   },
   module: {
     loaders: [

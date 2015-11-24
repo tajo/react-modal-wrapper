@@ -1,6 +1,6 @@
 {
   "name": "react-modal-wrapper",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "A React Modal Wrapper that uses FlexBox to keep it's position, BYOM (bring-your-own-modal)",
   "main": "build/index.js",
   "scripts": {
