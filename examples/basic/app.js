@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import FlexModalWrapper from '../../lib/index';
 
+let isOpen = false;
+
 const Modal = React.createClass({
     propTypes: {
         className: React.PropTypes.string,
@@ -10,7 +12,15 @@ const Modal = React.createClass({
             React.PropTypes.element,
             React.PropTypes.arrayOf(React.PropTypes.element)
         ]),
-        closeModal: React.PropTypes.func
+        closeModal: React.PropTypes.func,
+        useOpen: React.PropTypes.bool
+    },
+
+    close() {
+        if (this.props.useOpen) {
+            isOpen = false;
+        }
+        this.props.closeModal();
     },
 
     render() {
@@ -18,7 +28,7 @@ const Modal = React.createClass({
             <ReactCSSTransitionGroup transitionName="animate" transitionAppear transitionAppearTimeout={500}>
                 <div className={`modal ${this.props.className}`}>
                     {this.props.children}
-                    <p><button onClick={this.props.closeModal}>Close this</button></p>
+                    <p><button onClick={this.close.bind(this)}>Close this</button></p>
                 </div>
             </ReactCSSTransitionGroup>
         );
@@ -26,6 +36,11 @@ const Modal = React.createClass({
 });
 
 const App = React.createClass({
+    onClick() {
+        isOpen = true;
+        this.forceUpdate();
+    },
+
     render() {
         const buttonBasic = <button>Open a Basic Modal</button>;
         const buttonFullscreen = <button>Open a Fullscreen Modal</button>;
@@ -57,6 +72,14 @@ const App = React.createClass({
                         </p><p>
                             Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In euismod ultrices facilisis. Vestibulum porta sapien adipiscing augue congue id pretium lectus molestie. Proin quis dictum nisl. Morbi id quam sapien, sed vestibulum sem. Duis elementum rutrum mauris sed convallis. Proin vestibulum magna mi. Aenean tristique hendrerit magna, ac facilisis nulla hendrerit ut. Sed non tortor sodales quam auctor elementum. Donec hendrerit nunc eget elit pharetra pulvinar. Suspendisse id tempus tortor. Aenean luctus, elit commodo laoreet commodo, justo nisi consequat massa, sed vulputate quam urna quis eros. Donec vel.
                         </p>
+                    </Modal>
+                </FlexModalWrapper>
+                <button onClick={this.onClick.bind(this)}>Self-managed modal</button>
+                <FlexModalWrapper closeOnEsc closeOnOutsideClick isOpened={isOpen}>
+                    <Modal useOpen>
+                        <h2>Self-managed Modal</h2>
+                        <p>We pass a boolean which determines whether the modal is opened or closed.</p>
+                        <p>We have to manage it though so for example, if the "close this" button is clicked, we have to track that</p>
                     </Modal>
                 </FlexModalWrapper>
             </div>
