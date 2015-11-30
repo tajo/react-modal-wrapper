@@ -43,11 +43,11 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: "style-loader!css-loader!autoprefixer-loader"
+                loader: "style-loader!css-loader?localIdentName=[name]__[local]___[hash:base64:5]!autoprefixer-loader"
             }
         ]
     },
-
+    devtool: 'source-map',
     plugins: [
         new webpack.optimize.CommonsChunkPlugin('shared.js')
     ]

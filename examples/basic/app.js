@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import FlexModalWrapper from '../../lib/index';
+import FlexModalWrapper from '../../index';
 
 let isOpen = false;
 
@@ -28,7 +28,7 @@ const Modal = React.createClass({
             <ReactCSSTransitionGroup transitionName="animate" transitionAppear transitionAppearTimeout={500}>
                 <div className={`modal ${this.props.className}`}>
                     {this.props.children}
-                    <p><button onClick={this.close.bind(this)}>Close this</button></p>
+                    <p><button onClick={this.close}>Close this</button></p>
                 </div>
             </ReactCSSTransitionGroup>
         );
@@ -74,7 +74,7 @@ const App = React.createClass({
                         </p>
                     </Modal>
                 </FlexModalWrapper>
-                <button onClick={this.onClick.bind(this)}>Self-managed modal</button>
+                <button onClick={this.onClick}>Self-managed modal</button>
                 <FlexModalWrapper closeOnEsc closeOnOutsideClick isOpened={isOpen}>
                     <Modal useOpen>
                         <h2>Self-managed Modal</h2>

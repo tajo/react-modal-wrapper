@@ -1,10 +1,10 @@
 var path = require('path');
 require('es6-promise').polyfill();
 module.exports = {
-  entry: path.resolve(process.cwd(), 'lib/index.js'),
+  entry: path.resolve(process.cwd(), 'index.js'),
   output: {
     filename: 'index.js',
-    path: 'build/',
+    path: 'dist/',
     libraryTarget: 'umd',
     library: 'react-modal-wrapper'
   },

@@ -2,11 +2,11 @@
   "name": "react-modal-wrapper",
   "version": "0.1.3",
   "description": "A React Modal Wrapper that uses FlexBox to keep it's position, BYOM (bring-your-own-modal)",
-  "main": "build/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "webpack --config ./webpack.test.js --target node && mocha tmp/test.js",
     "start": "webpack-dev-server --inline --config ./webpack.config.js --content-base examples/ \"$@\"",
-    "prepublish": "webpack --devtool source-map --config ./webpack.build.js"
+    "prepublish": "npm test && webpack --devtool source-map --config ./webpack.build.js"
   },
   "author": "Pete Jodo",
   "license": "MIT",

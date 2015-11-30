@@ -1,7 +1,7 @@
 var path = require('path');
 require('es6-promise').polyfill();
 module.exports = {
-  entry: path.resolve(process.cwd(), 'lib/components/__tests__/FlexModalWrapper-test.js'),
+  entry: path.resolve(process.cwd(), 'tests/FlexModalWrapper-test.js'),
   output: {
     filename: 'test.js',
     path: 'tmp/'

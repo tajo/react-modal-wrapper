@@ -1,6 +1,6 @@
 **/.*
-**/__tests__
+tests
 examples
 CONTRIBUTING.md
-bower.json
 tmp
+webpack.**.js

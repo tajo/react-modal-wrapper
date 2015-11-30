@@ -278,8 +278,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/autoprefixer-loader/index.js!./FlexModalWrapper.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/autoprefixer-loader/index.js!./FlexModalWrapper.css");
+			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/autoprefixer-loader/index.js!./FlexModalWrapper.css", function() {
+				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/autoprefixer-loader/index.js!./FlexModalWrapper.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -297,13 +297,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	
 	// module
-	exports.push([module.id, "._3ip4hQnt8o01iMCkavq1r2 {\n    -webkit-box-flex: 0;\n    -webkit-flex-grow: 0;\n        -ms-flex-positive: 0;\n            flex-grow: 0;\n    -webkit-flex-shrink: 0;\n        -ms-flex-negative: 0;\n            flex-shrink: 0;\n    -webkit-flex-basis: 'auto';\n        -ms-flex-preferred-size: 'auto';\n            flex-basis: 'auto';\n    z-index: 9900;\n}\n\n.IX8Koty0hxyI6OdBsfv2C {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    right: 0;\n    left: 0;\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n    -webkit-justify-content: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    box-align: center;\n    box-pack: center;\n}\n\n._3cEsM7T41ggXBZr0FFm4Nn {\n    background: rgba(0,0,0,0.2);\n}\n", ""]);
+	exports.push([module.id, ".GQhOsIKVvqRfRUzxnhZUS {\n    -webkit-box-flex: 0;\n    -webkit-flex-grow: 0;\n        -ms-flex-positive: 0;\n            flex-grow: 0;\n    -webkit-flex-shrink: 0;\n        -ms-flex-negative: 0;\n            flex-shrink: 0;\n    -webkit-flex-basis: 'auto';\n        -ms-flex-preferred-size: 'auto';\n            flex-basis: 'auto';\n    z-index: 9900;\n}\n\n._72E20jckRALQKBlvsVKA9 {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    right: 0;\n    left: 0;\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n    -webkit-justify-content: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    box-align: center;\n    box-pack: center;\n}\n\n.aqiN6IkLVWWgQwOHMvCEz {\n    background: rgba(0,0,0,0.2);\n}\n", ""]);
 	
 	// exports
 	exports.locals = {
-		"flexModalWrapper": "_3ip4hQnt8o01iMCkavq1r2",
-		"flexModalOverlay": "IX8Koty0hxyI6OdBsfv2C",
-		"overlayStyle": "_3cEsM7T41ggXBZr0FFm4Nn"
+		"flexModalWrapper": "GQhOsIKVvqRfRUzxnhZUS",
+		"flexModalOverlay": "_72E20jckRALQKBlvsVKA9",
+		"overlayStyle": "aqiN6IkLVWWgQwOHMvCEz"
 	};
 
 /***/ },

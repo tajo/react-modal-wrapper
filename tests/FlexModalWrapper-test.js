@@ -1,6 +1,6 @@
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import { ModalWrapper } from '../FlexModalWrapper';
+import { ModalWrapper } from '../lib/FlexModalWrapper';
 import assert from 'assert';
 
 describe('FlexModalWrapper', () => {
