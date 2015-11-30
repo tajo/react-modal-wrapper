@@ -6,11 +6,6 @@ module.exports = {
     filename: 'test.js',
     path: 'tmp/'
   },
-  externals: {
-    'react': 'react',
-    'react-dom': 'react-dom',
-    'react-portal': 'react-portal'
-  },
   module: {
     loaders: [
       {
@@ -25,7 +20,7 @@ module.exports = {
     preLoaders: [
       {
         test: /\.css$/,
-        loader: "null"
+        loader: "null-loader"
       }
     ]
   }
