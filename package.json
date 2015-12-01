@@ -8,8 +8,12 @@
     "start": "webpack-dev-server --inline --config ./webpack.config.js --content-base examples/ \"$@\"",
     "prepublish": "npm test && webpack --devtool source-map --config ./webpack.build.js"
   },
-  "author": "Pete Jodo",
+  "author": "1stdibs",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/1stdibs/react-modal-wrapper"
+  },
   "dependencies": {
     "react": "^0.14.3",
     "react-dom": "^0.14.3",

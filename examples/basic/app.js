@@ -44,7 +44,8 @@ const App = React.createClass({
     render() {
         const buttonBasic = <button>Open a Basic Modal</button>;
         const buttonFullscreen = <button>Open a Fullscreen Modal</button>;
-        const buttonScrolling = <button>Open a Scrolling Modal</button>
+        const buttonScrolling = <button>Open a Scrolling Modal</button>;
+        const nextModalBasic = <button>Open next modal</button>;
         return (
             <div className="example">
                 <h1>react-flex-modal</h1>
@@ -52,6 +53,12 @@ const App = React.createClass({
                     <Modal>
                         <h2>Basic Modal</h2>
                         <p>You can close this with ESC or clicking outside the modal.</p>
+                        <FlexModalWrapper openByClickOn={nextModalBasic}>
+                            <Modal>
+                                <h2>Moved to next modal</h2>
+                                <p>This was nested in a modal. It closed the previous modal first before opening this one</p>
+                            </Modal>
+                        </FlexModalWrapper>
                     </Modal>
                 </FlexModalWrapper>
                 <FlexModalWrapper openByClickOn={buttonFullscreen}>
