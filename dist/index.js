@@ -143,11 +143,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var useOverlay = _props.useOverlay;
 	      var overlayClass = _props.overlayClass;
 	      var overlayStyle = _props.overlayStyle;
+	      var closeModal = _props.closePortal;
 	
 	      var modalwrapper = _react2.default.createElement(
 	        'div',
 	        { className: _FlexModalWrapper2.default.flexModalWrapper, ref: 'content' },
-	        _react2.default.cloneElement(this.props.children, { closeModal: this.props.closePortal })
+	        _react2.default.Children.map(this.props.children, function (c) {
+	          return _react2.default.cloneElement(c, { closeModal: closeModal });
+	        })
 	      );
 	      var overlay = undefined;
 	      if (useOverlay) {
@@ -179,7 +182,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	})(_react2.default.Component);
 	
 	ModalWrapper.propTypes = {
-	  children: _react2.default.PropTypes.element.isRequired,
+	  children: _react2.default.PropTypes.node.isRequired,
 	  useOverlay: _react2.default.PropTypes.bool,
 	  overlayStyle: _react2.default.PropTypes.object,
 	  overlayClass: _react2.default.PropTypes.string,
@@ -232,7 +235,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = FlexModalWrapper;
 	
 	FlexModalWrapper.propTypes = {
-	  children: _react2.default.PropTypes.element.isRequired,
+	  children: _react2.default.PropTypes.node.isRequired,
 	  useOverlay: _react2.default.PropTypes.bool,
 	  overlayStyle: _react2.default.PropTypes.object,
 	  overlayClass: _react2.default.PropTypes.string,
