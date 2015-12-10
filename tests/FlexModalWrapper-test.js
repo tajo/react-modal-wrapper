@@ -10,15 +10,15 @@ describe('FlexModalWrapper', () => {
         renderer = TestUtils.createRenderer();
     })
 
-    it('supports overlayClass', () => {
-        const overlayClass = 'myClass';
+    it('supports overlayClassName', () => {
+        const overlayClassName = 'myClass';
         renderer.render(
-            <ModalWrapper overlayClass={overlayClass}>
+            <ModalWrapper overlayClassName={overlayClassName}>
                 <h2>It's a modal</h2>
             </ModalWrapper>
         );
         const result = renderer.getRenderOutput();
-        assert(result.props.className.indexOf(overlayClass) > -1);
+        assert(result.props.className.indexOf(overlayClassName) > -1);
     });
 
     it('supports overlayStyle', () => {
