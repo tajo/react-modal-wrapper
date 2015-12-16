@@ -101,7 +101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	// TODO: should be able to do this with just one component rather than two
+	var scrollEvents = ['scroll', 'touchmove', 'wheel'];
 	
 	var ModalWrapper = exports.ModalWrapper = (function (_React$Component) {
 	  _inherits(ModalWrapper, _React$Component);
@@ -112,20 +112,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ModalWrapper).call(this));
 	
 	    _this.handleMouseClickOutside = _this.handleMouseClickOutside.bind(_this);
+	    _this.handleScrollOutside = _this.handleScrollOutside.bind(_this);
 	    return _this;
 	  }
 	
 	  _createClass(ModalWrapper, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
+	      var _this2 = this;
+	
 	      if (this.props.closeOnOutsideClick) {
 	        document && document.addEventListener('mousedown', this.handleMouseClickOutside);
+	      }
+	      if (this.props.preventScrolling) {
+	        scrollEvents.forEach(function (eventType) {
+	          return document && document.addEventListener(eventType, _this2.handleScrollOutside);
+	        });
 	      }
 	    }
 	  }, {
 	    key: 'componentWillUnmount',
 	    value: function componentWillUnmount() {
+	      var _this3 = this;
+	
 	      document && document.removeEventListener('mousedown', this.handleMouseClickOutside);
+	      scrollEvents.forEach(function (eventType) {
+	        return document && document.removeEventListener(eventType, _this3.handleScrollOutside);
+	      });
 	    }
 	  }, {
 	    key: 'handleMouseClickOutside',
@@ -135,6 +148,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	      e.stopPropagation();
 	      this.props.closePortal();
+	    }
+	  }, {
+	    key: 'handleScrollOutside',
+	    value: function handleScrollOutside(e) {
+	      if ((0, _reactPortal.isNodeInRoot)(e.target, (0, _reactDom.findDOMNode)(this.refs.content))) {
+	        return;
+	      }
+	      e.preventDefault();
 	    }
 	  }, {
 	    key: 'render',
@@ -189,10 +210,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	  overlayStyle: _react2.default.PropTypes.object,
 	  overlayClassName: _react2.default.PropTypes.string,
 	  closeOnOutsideClick: _react2.default.PropTypes.bool,
+	  preventScrolling: _react2.default.PropTypes.bool,
 	  // passed by Portal
 	  closePortal: _react2.default.PropTypes.func
 	};
-	ModalWrapper.defaultProps = { useOverlay: true };
+	ModalWrapper.defaultProps = {
+	  useOverlay: true,
+	  preventScrolling: true
+	};
 	
 	var FlexModalWrapper = (function (_React$Component2) {
 	  _inherits(FlexModalWrapper, _React$Component2);
@@ -217,15 +242,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var useOverlay = _other.useOverlay;
 	      var overlayStyle = _other.overlayStyle;
 	      var overlayClassName = _other.overlayClassName;
+	      var preventScrolling = _other.preventScrolling;
 	
-	      var portalOptions = _objectWithoutProperties(_other, ['closeOnOutsideClick', 'className', 'useOverlay', 'overlayStyle', 'overlayClassName']);
+	      var portalOptions = _objectWithoutProperties(_other, ['closeOnOutsideClick', 'className', 'useOverlay', 'overlayStyle', 'overlayClassName', 'preventScrolling']);
 	
 	      return _react2.default.createElement(
 	        _reactPortal2.default,
 	        portalOptions,
 	        _react2.default.createElement(
 	          ModalWrapper,
-	          { closeOnOutsideClick: closeOnOutsideClick, useOverlay: useOverlay, overlayStyle: overlayStyle, overlayClassName: overlayClassName },
+	          { closeOnOutsideClick: closeOnOutsideClick, className: className, useOverlay: useOverlay, overlayStyle: overlayStyle, overlayClassName: overlayClassName, preventScrolling: preventScrolling },
 	          children
 	        )
 	      );
@@ -248,6 +274,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  openByClickOn: _react2.default.PropTypes.element,
 	  closeOnEsc: _react2.default.PropTypes.bool,
 	  closeOnOutsideClick: _react2.default.PropTypes.bool,
+	  preventScrolling: _react2.default.PropTypes.bool,
 	  onClose: _react2.default.PropTypes.func
 	};
 
