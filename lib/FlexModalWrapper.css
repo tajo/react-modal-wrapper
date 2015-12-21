@@ -24,8 +24,3 @@
 :local(.overlayStyle) {
     background: rgba(0,0,0,0.2);
 }
-
-:local(.noscroll) {
-    overflow-y: scroll;
-    position: fixed;
-}
