@@ -124,20 +124,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	      if (this.props.preventScrolling) {
 	        this.scrollTop = document.body.scrollTop;
+	        this.overflow = document.body.style.overflow;
 	        document.body.style.top = -this.scrollTop + 'px';
-	        document.body.classList.add(_FlexModalWrapper2.default.noscroll);
+	        document.body.style.overflow = 'hidden';
 	      }
 	    }
 	  }, {
 	    key: 'componentWillUnmount',
 	    value: function componentWillUnmount() {
-	      if (document) {
-	        document.removeEventListener('mousedown', this.handleMouseClickOutside);
+	      if (!document) {
+	        return;
+	      }
+	      document.removeEventListener('mousedown', this.handleMouseClickOutside);
+	      if (this.props.preventScrolling) {
 	        document.body.style.top = '';
-	        document.body.classList.remove(_FlexModalWrapper2.default.noscroll);
-	        if (this.scrollTop) {
-	          document.body.scrollTop = this.scrollTop;
-	        }
+	        document.body.style.overflow = this.overflow;
+	        document.body.scrollTop = this.scrollTop;
 	      }
 	    }
 	  }, {
@@ -323,14 +325,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	
 	// module
-	exports.push([module.id, ".GQhOsIKVvqRfRUzxnhZUS {\n    -webkit-box-flex: 0;\n    -webkit-flex-grow: 0;\n        -ms-flex-positive: 0;\n            flex-grow: 0;\n    -webkit-flex-shrink: 0;\n        -ms-flex-negative: 0;\n            flex-shrink: 0;\n    -webkit-flex-basis: auto;\n        -ms-flex-preferred-size: auto;\n            flex-basis: auto;\n    max-width: 100%;\n    max-height: 100%;\n    overflow-y: auto;\n}\n\n._72E20jckRALQKBlvsVKA9 {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    right: 0;\n    left: 0;\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n    -webkit-justify-content: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    box-align: center;\n    box-pack: center;\n    z-index: 9900;\n}\n\n.aqiN6IkLVWWgQwOHMvCEz {\n    background: rgba(0,0,0,0.2);\n}\n\n._1R4kKG-Y1wujVsg3e0JDy9 {\n    overflow-y: scroll;\n    position: fixed;\n}\n", ""]);
+	exports.push([module.id, ".GQhOsIKVvqRfRUzxnhZUS {\n    -webkit-box-flex: 0;\n    -webkit-flex-grow: 0;\n        -ms-flex-positive: 0;\n            flex-grow: 0;\n    -webkit-flex-shrink: 0;\n        -ms-flex-negative: 0;\n            flex-shrink: 0;\n    -webkit-flex-basis: auto;\n        -ms-flex-preferred-size: auto;\n            flex-basis: auto;\n    max-width: 100%;\n    max-height: 100%;\n    overflow-y: auto;\n}\n\n._72E20jckRALQKBlvsVKA9 {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    right: 0;\n    left: 0;\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n    -webkit-justify-content: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    box-align: center;\n    box-pack: center;\n    z-index: 9900;\n}\n\n.aqiN6IkLVWWgQwOHMvCEz {\n    background: rgba(0,0,0,0.2);\n}\n", ""]);
 	
 	// exports
 	exports.locals = {
 		"flexModalWrapper": "GQhOsIKVvqRfRUzxnhZUS",
 		"flexModalOverlay": "_72E20jckRALQKBlvsVKA9",
-		"overlayStyle": "aqiN6IkLVWWgQwOHMvCEz",
-		"noscroll": "_1R4kKG-Y1wujVsg3e0JDy9"
+		"overlayStyle": "aqiN6IkLVWWgQwOHMvCEz"
 	};
 
 /***/ },
