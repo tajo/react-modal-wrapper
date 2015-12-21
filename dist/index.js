@@ -101,8 +101,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var scrollEvents = ['scroll', 'touchmove', 'wheel'];
-	
 	var ModalWrapper = exports.ModalWrapper = (function (_React$Component) {
 	  _inherits(ModalWrapper, _React$Component);
 	
@@ -112,33 +110,35 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ModalWrapper).call(this));
 	
 	    _this.handleMouseClickOutside = _this.handleMouseClickOutside.bind(_this);
-	    _this.handleScrollOutside = _this.handleScrollOutside.bind(_this);
 	    return _this;
 	  }
 	
 	  _createClass(ModalWrapper, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var _this2 = this;
-	
+	      if (!document) {
+	        return;
+	      }
 	      if (this.props.closeOnOutsideClick) {
-	        document && document.addEventListener('mousedown', this.handleMouseClickOutside);
+	        document.addEventListener('mousedown', this.handleMouseClickOutside);
 	      }
 	      if (this.props.preventScrolling) {
-	        scrollEvents.forEach(function (eventType) {
-	          return document && document.addEventListener(eventType, _this2.handleScrollOutside);
-	        });
+	        this.scrollTop = document.body.scrollTop;
+	        document.body.style.top = -this.scrollTop + 'px';
+	        document.body.classList.add(_FlexModalWrapper2.default.noscroll);
 	      }
 	    }
 	  }, {
 	    key: 'componentWillUnmount',
 	    value: function componentWillUnmount() {
-	      var _this3 = this;
-	
-	      document && document.removeEventListener('mousedown', this.handleMouseClickOutside);
-	      scrollEvents.forEach(function (eventType) {
-	        return document && document.removeEventListener(eventType, _this3.handleScrollOutside);
-	      });
+	      if (document) {
+	        document.removeEventListener('mousedown', this.handleMouseClickOutside);
+	        document.body.style.top = '';
+	        document.body.classList.remove(_FlexModalWrapper2.default.noscroll);
+	        if (this.scrollTop) {
+	          document.body.scrollTop = this.scrollTop;
+	        }
+	      }
 	    }
 	  }, {
 	    key: 'handleMouseClickOutside',
@@ -148,14 +148,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	      e.stopPropagation();
 	      this.props.closePortal();
-	    }
-	  }, {
-	    key: 'handleScrollOutside',
-	    value: function handleScrollOutside(e) {
-	      if ((0, _reactPortal.isNodeInRoot)(e.target, (0, _reactDom.findDOMNode)(this.refs.content))) {
-	        return;
-	      }
-	      e.preventDefault();
 	    }
 	  }, {
 	    key: 'render',
@@ -331,13 +323,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	
 	// module
-	exports.push([module.id, ".GQhOsIKVvqRfRUzxnhZUS {\n    -webkit-box-flex: 0;\n    -webkit-flex-grow: 0;\n        -ms-flex-positive: 0;\n            flex-grow: 0;\n    -webkit-flex-shrink: 0;\n        -ms-flex-negative: 0;\n            flex-shrink: 0;\n    -webkit-flex-basis: auto;\n        -ms-flex-preferred-size: auto;\n            flex-basis: auto;\n    max-width: 100%;\n    max-height: 100%;\n    overflow-y: auto;\n}\n\n._72E20jckRALQKBlvsVKA9 {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    right: 0;\n    left: 0;\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n    -webkit-justify-content: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    box-align: center;\n    box-pack: center;\n    z-index: 9900;\n}\n\n.aqiN6IkLVWWgQwOHMvCEz {\n    background: rgba(0,0,0,0.2);\n}\n", ""]);
+	exports.push([module.id, ".GQhOsIKVvqRfRUzxnhZUS {\n    -webkit-box-flex: 0;\n    -webkit-flex-grow: 0;\n        -ms-flex-positive: 0;\n            flex-grow: 0;\n    -webkit-flex-shrink: 0;\n        -ms-flex-negative: 0;\n            flex-shrink: 0;\n    -webkit-flex-basis: auto;\n        -ms-flex-preferred-size: auto;\n            flex-basis: auto;\n    max-width: 100%;\n    max-height: 100%;\n    overflow-y: auto;\n}\n\n._72E20jckRALQKBlvsVKA9 {\n    position: fixed;\n    top: 0;\n    bottom: 0;\n    right: 0;\n    left: 0;\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n    -webkit-justify-content: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    box-align: center;\n    box-pack: center;\n    z-index: 9900;\n}\n\n.aqiN6IkLVWWgQwOHMvCEz {\n    background: rgba(0,0,0,0.2);\n}\n\n._1R4kKG-Y1wujVsg3e0JDy9 {\n    overflow-y: scroll;\n    position: fixed;\n}\n", ""]);
 	
 	// exports
 	exports.locals = {
 		"flexModalWrapper": "GQhOsIKVvqRfRUzxnhZUS",
 		"flexModalOverlay": "_72E20jckRALQKBlvsVKA9",
-		"overlayStyle": "aqiN6IkLVWWgQwOHMvCEz"
+		"overlayStyle": "aqiN6IkLVWWgQwOHMvCEz",
+		"noscroll": "_1R4kKG-Y1wujVsg3e0JDy9"
 	};
 
 /***/ },
