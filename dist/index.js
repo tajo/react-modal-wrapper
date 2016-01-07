@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -101,7 +101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var ModalWrapper = exports.ModalWrapper = (function (_React$Component) {
+	var ModalWrapper = exports.ModalWrapper = function (_React$Component) {
 	  _inherits(ModalWrapper, _React$Component);
 	
 	  function ModalWrapper() {
@@ -123,9 +123,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        document.addEventListener('mousedown', this.handleMouseClickOutside);
 	      }
 	      if (this.props.preventScrolling) {
-	        this.scrollTop = document.body.scrollTop;
-	        this.overflow = document.body.style.overflow;
-	        document.body.style.top = -this.scrollTop + 'px';
+	        this.previousOverflow = document.body.style.overflow;
 	        document.body.style.overflow = 'hidden';
 	      }
 	    }
@@ -137,15 +135,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	      document.removeEventListener('mousedown', this.handleMouseClickOutside);
 	      if (this.props.preventScrolling) {
-	        document.body.style.top = '';
-	        document.body.style.overflow = this.overflow;
-	        document.body.scrollTop = this.scrollTop;
+	        document.body.style.overflow = this.previousOverflow;
 	      }
 	    }
 	  }, {
 	    key: 'handleMouseClickOutside',
 	    value: function handleMouseClickOutside(e) {
-	      if ((0, _reactPortal.isNodeInRoot)(e.target, (0, _reactDom.findDOMNode)(this.refs.content))) {
+	      var rootNode = (0, _reactDom.findDOMNode)(this.refs.content);
+	      if (rootNode.contains(e.target) || e.target.tagName === 'HTML') {
 	        return;
 	      }
 	      e.stopPropagation();
@@ -195,7 +192,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }]);
 	
 	  return ModalWrapper;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 	
 	ModalWrapper.propTypes = {
 	  children: _react2.default.PropTypes.node.isRequired,
@@ -213,7 +210,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  preventScrolling: true
 	};
 	
-	var FlexModalWrapper = (function (_React$Component2) {
+	var FlexModalWrapper = function (_React$Component2) {
 	  _inherits(FlexModalWrapper, _React$Component2);
 	
 	  function FlexModalWrapper() {
@@ -253,7 +250,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }]);
 	
 	  return FlexModalWrapper;
-	})(_react2.default.Component);
+	}(_react2.default.Component);
 	
 	exports.default = FlexModalWrapper;
 	
