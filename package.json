@@ -4,9 +4,10 @@
   "description": "A React Modal Wrapper that uses FlexBox to keep it's position, BYOM (bring-your-own-modal)",
   "main": "dist/index.js",
   "scripts": {
-    "test": "webpack --config ./webpack.test.js --target node && mocha tmp/test.js",
+    "build": "webpack --devtool source-map --config ./webpack.build.js",
+    "test": "mocha --compilers js:babel-register",
     "start": "webpack-dev-server --inline --config ./webpack.config.js --content-base examples/ \"$@\"",
-    "prepublish": "npm test && webpack --devtool source-map --config ./webpack.build.js"
+    "prepublish": "npm test && npm run build"
   },
   "author": "1stdibs",
   "license": "MIT",
@@ -15,8 +16,6 @@
     "url": "https://github.com/1stdibs/react-modal-wrapper"
   },
   "dependencies": {
-    "react": "^0.14.3",
-    "react-dom": "^0.14.3",
     "react-portal": "~1.5.5"
   },
   "peerDependencies": {
@@ -31,9 +30,12 @@
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
     "babel-preset-stage-2": "^6.1.18",
+    "babel-register": "^6.3.13",
     "css-loader": "^0.23.0",
+    "enzyme": "^1.2.0",
     "es6-promise": "^3.0.2",
-    "null-loader": "^0.1.1",
+    "jsdom": "^7.2.2",
+    "mocha": "^2.3.4",
     "react-addons-css-transition-group": "^0.14.3",
     "react-addons-test-utils": "^0.14.3",
     "style-loader": "^0.13.0",
