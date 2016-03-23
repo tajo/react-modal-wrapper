@@ -24,8 +24,15 @@ const Modal = React.createClass({
     },
 
     render() {
+        const transitionProps = {
+            transitionName: 'animate',
+            transitionAppear: true,
+            transitionAppearTimeout: 300,
+            transitionEnter: false,
+            transitionLeave: false
+        };
         return (
-            <ReactCSSTransitionGroup transitionName="animate" transitionAppear transitionAppearTimeout={500}>
+            <ReactCSSTransitionGroup {...transitionProps}>
                 <div className={`modal ${this.props.className}`}>
                     {this.props.children}
                     <p><button onClick={this.close}>Close this</button></p>
